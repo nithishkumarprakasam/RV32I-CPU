@@ -1,69 +1,92 @@
-# RV32I-CPU
-32-bit RISC-V CPU using Verilog HDL
+# RV32I RISC-V Processor Design and RTL Verification
 
-# RV32I RISC-V Processor Using Verilog HDL
+**A 32-bit RISC-V CPU implementation using Verilog HDL, developed in Intel Quartus Prime Lite and verified through Questa/ModelSim simulation.**
 
 ## 1. Project Overview
 
-This project focuses on the design and RTL simulation of a 32-bit RISC-V processor based on the RV32I instruction set architecture using Verilog HDL.
+This project focuses on the design and RTL-level verification of a basic processor based on the **RISC-V RV32I Instruction Set Architecture**.
 
-The processor is developed using Intel Quartus Prime Lite and verified through RTL simulation using Questa/ModelSim.
+The processor is organized into individual hardware modules, including the Arithmetic Logic Unit (ALU), Register File, Instruction Memory, Data Memory, and Immediate Generator.
 
-## 2. Project Objectives
+A dedicated Verilog testbench is used to apply test inputs, execute instructions, and observe the processor's behavior through simulation waveforms and transcript logs.
 
-- Understand the internal architecture of a RISC-V processor.
-- Design processor modules using Verilog HDL.
-- Implement arithmetic and logical operations.
-- Understand instruction execution and the Program Counter (PC).
-- Verify processor functionality through simulation.
+## 2. Technical Specifications
 
-## 3. Processor Architecture
-
-The processor design consists of the following modules:
-
-- Program Counter (PC)
-- Instruction Memory
-- Instruction Decoder / Immediate Generator
-- Register File
-- Arithmetic Logic Unit (ALU)
-- Data Memory
-- Control Logic
-
-## 4. Verilog Modules
-
-| Module | Description |
+| Parameter | Description |
 |---|---|
-| alu.v | Performs arithmetic and logical operations |
-| register_file.v | Stores processor registers |
-| instruction_memory.v | Stores program instructions |
-| data_memory.v | Handles data storage and access |
-| immediate_generator.v | Generates immediate values |
-| rv32i_cpu.v | Main processor module |
-| rv32i_cpu_tb.v | Processor testbench |
+| Processor Architecture | RISC-V |
+| Instruction Set | RV32I |
+| Data Width | 32-bit |
+| HDL | Verilog |
+| Design Tool | Intel Quartus Prime Lite |
+| Simulation Tool | Questa/ModelSim |
+| Verification Method | RTL Simulation |
+| Testbench | Verilog HDL |
 
-## 5. Tools and Technologies
+## 3. Processor Architecture and Modules
 
-- Verilog HDL
-- Intel Quartus Prime Lite
-- Questa / ModelSim
-- RTL Simulation
+| Module | Function |
+|---|---|
+| `rv32i_cpu.v` | Top-level processor module |
+| `alu.v` | Arithmetic and logical operations |
+| `register_file.v` | 32-bit general-purpose register storage |
+| `instruction_memory.v` | Instruction storage and retrieval |
+| `data_memory.v` | Data read and write operations |
+| `immediate_generator.v` | Immediate value extraction and generation |
+| `rv32i_cpu_tb.v` | CPU testbench for functional verification |
 
-## 6. Simulation and Verification
+## 4. RTL Design and Implementation
 
-The processor is tested using a Verilog testbench.
+The processor is designed using a modular RTL approach. Each functional block is implemented as an independent Verilog module and integrated into the top-level CPU.
 
-Simulation observations include:
+The design includes:
+- Instruction processing and execution logic
+- Program Counter (PC) operation
+- Register read and write operations
+- Arithmetic and logical execution
+- Immediate value generation
+- Instruction and data memory interfacing
 
-- Clock signal operation
-- Program Counter updates
-- Instruction execution
-- Register operations
-- ALU operations
-- Memory operations
+## 5. CPU Testbench and Functional Verification
 
-Simulation waveforms are provided in the repository when available.
+The CPU testbench (`rv32i_cpu_tb.v`) is developed to verify the processor's behavior during simulation.
 
-## 7. Project Structure
+The testbench provides the required clock and reset signals, executes the programmed instruction sequence, and monitors relevant CPU signals.
+
+**Verification evidence:**
+
+### CPU Testbench Execution Output
+
+![CPU Testbench Execution Output](testbench_output.png.jpeg)
+
+*Simulation output captured during CPU testbench execution.*
+
+### Questa/ModelSim Transcript Log
+
+![Questa Simulation Transcript](questa_transcript.txt.jpeg)
+
+*Transcript screenshot showing the simulation execution log.*
+
+### RTL Simulation Waveform
+
+![RV32I CPU RTL Waveform](cpu_waveform.png.jpeg)
+
+*Waveform view used to observe processor signals and execution behavior over simulation time.*
+
+## 6. Simulation and Verification Environment
+
+The RTL design is compiled and simulated using Questa/ModelSim.
+
+The simulation environment is used to:
+1. Compile the Verilog design modules.
+2. Compile the CPU testbench.
+3. Initialize the processor using reset.
+4. Apply clock signals.
+5. Execute the instruction sequence.
+6. Monitor processor signals.
+7. Analyze simulation results using the transcript and waveform windows.
+
+## 7. Project Directory Structure
 
 ```text
 RV32I-CPU/
@@ -76,18 +99,40 @@ RV32I-CPU/
 ├── rv32i_cpu.v
 ├── rv32i_cpu_tb.v
 │
-├── README.md
-└── simulation/
+├── rv32i_cpu.qpf
+├── rv32i_cpu.qsf
+│
+├── cpu_waveform.png.jpeg
+├── testbench_output.png.jpeg
+└── questa_transcript.txt.jpeg
 ```
 
-## 8. Future Improvements
+## 8. Tools and Technologies
 
-- Support additional RV32I instructions.
-- Improve processor control logic.
-- Optimize ALU operations.
-- Explore pipelined processor architecture.
-- Study FPGA implementation.
+- Verilog HDL
+- RISC-V RV32I ISA
+- Intel Quartus Prime Lite
+- Questa/ModelSim
+- RTL Design
+- Functional Simulation
+- Digital System Design
 
-## 9. Author
+## 9. Future Scope
 
-Nithish Kumar P
+- Extend instruction support to cover more RV32I operations.
+- Develop a five-stage pipelined RISC-V processor.
+- Implement data forwarding and hazard detection.
+- Improve verification with directed and randomized test cases.
+- Explore FPGA-based hardware implementation.
+
+## 10. Conclusion
+
+This project provides practical experience in 32-bit processor architecture, RTL design, Verilog module integration, and simulation-based functional verification. It demonstrates the implementation and simulation workflow of a basic RISC-V processor.
+
+## Author
+
+**Nithish Kumar P**
+
+**Domain:** Digital VLSI Design | Processor Architecture | RTL Design and Verification
+
+**Repository:** RV32I RISC-V CPU
